@@ -24,9 +24,6 @@
 }
 
 .MuiInputBase-input{
+  color:'black';
   text-align: center;
-}
-
-.MuiButton-label{
-  font-size: .32px * 100vh;
 }
