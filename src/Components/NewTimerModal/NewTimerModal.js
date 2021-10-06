@@ -75,7 +75,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
 
   return (
     <div>
-      <Button style={{fontSize:btnTextSize}} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>Create new timer</Button>
+      <Button style={{fontSize:btnTextSize}} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>Start new timer</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -91,6 +91,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
             </div>
             <Button type='submit' variant='contained' color='primary'>START</Button>
           </form>
+          <Button onClick={resetAllValues}>Clear</Button>
         </div>
       </Modal>
     </div>
