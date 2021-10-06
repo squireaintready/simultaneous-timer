@@ -66,10 +66,14 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     let temp = document.getElementById('createsNewTimer')
     if(timers.length < 1){
       temp.style.height = '100vh'
+      temp.style.backgroundColor ='black'
       setBtnTextSize(window.innerHeight / 20)
     }else{
       temp.style.height = '4vh'
-      setBtnTextSize(window.innerHeight / 80)
+      // temp.style.background ='linear-gradient(90deg,#00b09b,#96c93d)'
+      temp.style.backgroundColor ='#00d395'
+      temp.style.padding = '2rem'
+      setBtnTextSize(window.innerHeight / 30)
     }
   }, [timers.length])
 
