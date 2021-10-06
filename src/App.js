@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="app">
-      <NewTimerModal addNewTimer={addNewTimer} />
+      <NewTimerModal addNewTimer={addNewTimer} timers={timers}/>
       <div className="container">
         <div className="timers">
           {timers.map((time) => (

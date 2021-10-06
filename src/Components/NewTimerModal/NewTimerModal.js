@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import "./styles.css";
 
 import uuid from "uuid";
@@ -8,12 +8,13 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import TextField from '@material-ui/core/TextField'
 
-const NewTimerModal = ({ addNewTimer }) => {
+const NewTimerModal = ({ addNewTimer, timers }) => {
   const [open, setOpen] = useState(false);
   const [newTitle, setNewTitle] = useState('')
   const [hours, setHours] = useState("00")
   const [minutes, setMinutes] = useState("00")
   const [seconds, setSeconds] = useState("00")
+  const [btnTextSize, setBtnTextSize] = useState('')
   
   // OPENS & CLOSES MODAL
   const handleOpen = () => setOpen(true);
@@ -60,9 +61,21 @@ const NewTimerModal = ({ addNewTimer }) => {
     }
   }
 
+  useEffect(() =>{
+    let temp = document.getElementById('createsNewTimer')
+    if(timers.length < 1){
+      temp.style.height = '100vh'
+      setBtnTextSize(window.innerHeight / 20)
+    }else{
+      temp.style.height = '4vh'
+      setBtnTextSize(window.innerHeight / 80)
+    }
+  }, [timers.length])
+
+
   return (
     <div>
-      <Button fullWidth={true} variant='contained' onClick={handleOpen}>Create new timer</Button>
+      <Button style={{fontSize:btnTextSize}} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>Create new timer</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -72,9 +85,9 @@ const NewTimerModal = ({ addNewTimer }) => {
           <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
             <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
             <div className='modalTimeFields'>
-              <TextField name="hours" label="hours" value={hours.toString()} onChange={handleNewTimerChange}/>:
-              <TextField name="minutes" label="minutes" value={minutes.toString()} onChange={handleNewTimerChange}/>:
-              <TextField name="seconds" label="seconds" value={seconds.toString()} onChange={handleNewTimerChange}/>
+              <TextField name="hours" label="hours" value={hours} onChange={handleNewTimerChange}/>:
+              <TextField name="minutes" label="minutes" value={minutes} onChange={handleNewTimerChange}/>:
+              <TextField name="seconds" label="seconds" value={seconds} onChange={handleNewTimerChange}/>
             </div>
             <Button type='submit' variant='contained' color='primary'>START</Button>
           </form>
