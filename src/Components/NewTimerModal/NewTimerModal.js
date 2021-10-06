@@ -53,7 +53,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     e.preventDefault()
     if(newTitle.length === 0){
       alert('Please enter a title')
-    }else if(hours === "00" && minutes === "00" && seconds === "00"){
+    }else if(hours <= 0 && minutes <= 0 && seconds <= 0){
       alert('Please enter a valid time')
     }else{
       addNewTimer({id: uuid(), title: newTitle, timer:{hours:parseInt(hours), minutes:parseInt(minutes), seconds:parseInt(seconds)}})
