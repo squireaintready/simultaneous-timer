@@ -11,9 +11,9 @@ import TextField from '@material-ui/core/TextField'
 const NewTimerModal = ({ addNewTimer, timers }) => {
   const [open, setOpen] = useState(false);
   const [newTitle, setNewTitle] = useState('')
-  const [hours, setHours] = useState("00")
-  const [minutes, setMinutes] = useState("00")
-  const [seconds, setSeconds] = useState("00")
+  const [hours, setHours] = useState(0)
+  const [minutes, setMinutes] = useState(0)
+  const [seconds, setSeconds] = useState(0)
   const [btnTextSize, setBtnTextSize] = useState('')
   
   // OPENS & CLOSES MODAL
@@ -23,9 +23,9 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
   // REINITIALIZE ALL VALUES TO 0
   const resetAllValues = () =>{
     setNewTitle('')
-    setHours('00')
-    setMinutes('00')
-    setSeconds('00')
+    setHours(0)
+    setMinutes(0)
+    setSeconds(0)
   }
 
   // UPDATES WITH USER TITLE PARAM
@@ -35,6 +35,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
 
   // UPDATES WITH USER TIMER PARAMS
   const handleNewTimerChange = (e) => {
+    // limits string length to 2
     if(e.target.value.length > 2){
       e.target.value = e.target.value.substring(1)
     }
@@ -85,9 +86,9 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
           <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
             <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
             <div className='modalTimeFields'>
-              <TextField type="number" name="hours" label="hours" value={hours.padStart(2, "0")} onChange={handleNewTimerChange}/>:
-              <TextField type="number" name="minutes" label="minutes" value={minutes.padStart(2, "0")} onChange={handleNewTimerChange}/>:
-              <TextField type="number" name="seconds" label="seconds" value={seconds.padStart(2, "0")} onChange={handleNewTimerChange}/>
+              <TextField type="number" name="hours" label="hours" value={hours.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:
+              <TextField type="number" name="minutes" label="minutes" value={minutes.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:
+              <TextField type="number" name="seconds" label="seconds" value={seconds.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>
             </div>
             <Button type='submit' variant='contained' color='primary'>START</Button>
           </form>
