@@ -85,9 +85,9 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
           <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
             <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
             <div className='modalTimeFields'>
-              <TextField name="hours" label="hours" value={hours} onChange={handleNewTimerChange}/>:
-              <TextField name="minutes" label="minutes" value={minutes} onChange={handleNewTimerChange}/>:
-              <TextField name="seconds" label="seconds" value={seconds} onChange={handleNewTimerChange}/>
+              <TextField type="number" name="hours" label="hours" value={hours.padStart(2, "0")} onChange={handleNewTimerChange}/>:
+              <TextField type="number" name="minutes" label="minutes" value={minutes.padStart(2, "0")} onChange={handleNewTimerChange}/>:
+              <TextField type="number" name="seconds" label="seconds" value={seconds.padStart(2, "0")} onChange={handleNewTimerChange}/>
             </div>
             <Button type='submit' variant='contained' color='primary'>START</Button>
           </form>
