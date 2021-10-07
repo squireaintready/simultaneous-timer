@@ -1,6 +1,6 @@
 .modalContainer{
-  width: 225px;
-  height: 225px;
+  width: 300px;
+  height: 300px;
   padding: 1rem 1rem;
   background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
   color:#f9fafb;
@@ -30,4 +30,8 @@
 
 .MuiButtonBase-root .MuiButton-root .MuiButton-label{
   margin-bottom:20rem;
+}
+
+#createsNewTimer .MuiButton-label{
+  color:yellowgreen !important;
 }
