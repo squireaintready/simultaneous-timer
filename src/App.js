@@ -15,8 +15,8 @@ function App() {
     })
   }
 
-  // REMOVES TIMER WHEN 00:00:00
-  const removeTimerWhenFinished = (id) => {
+  // REMOVES TIMER FROM ARR
+  const removeTimerFromArr = (id) => {
     setTimers(timers.filter((timer) => timer.id !== id));
   };
 
@@ -31,7 +31,7 @@ function App() {
               id={time.id}
               timer={time.timer}
               title={time.title}
-              removeTimerWhenFinished={removeTimerWhenFinished}
+              removeTimerFromArr={removeTimerFromArr}
             />
           ))}
         </div>

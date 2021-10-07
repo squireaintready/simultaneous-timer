@@ -10,7 +10,7 @@ import LoopIcon from "@material-ui/icons/Loop";
 import PauseIcon from "@material-ui/icons/Pause";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
-const TimerCard = ({ timer, title, id, removeTimerWhenFinished }) => {
+const TimerCard = ({ timer, title, id, removeTimerFromArr }) => {
   const [resetTimer, setResetTimer] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
 
@@ -30,7 +30,7 @@ const TimerCard = ({ timer, title, id, removeTimerWhenFinished }) => {
         hoursMinSecs={timer}
         title={title}
         id={id}
-        removeTimerWhenFinished={removeTimerWhenFinished}
+        removeTimerFromArr={removeTimerFromArr}
         resetTimer={resetTimer}
         isPaused={isPaused}
         handleResetTimer={handleResetTimer}
@@ -38,11 +38,11 @@ const TimerCard = ({ timer, title, id, removeTimerWhenFinished }) => {
       <hr className="cardDivider" />
       <h5 className="cardTitle">{title}</h5>
       <div className="cardBtns">
-        <Fab color="primary" aria-label="add" onClick={handleResetTimer}>
-          <LoopIcon />
+        <Fab color="default" aria-label="add" onClick={handleResetTimer}>
+          <LoopIcon fontSize="small"/>
         </Fab>
-        <Fab color="secondary" aria-label="edit" onClick={pausePlay}>
-          {isPaused ? <PlayArrowIcon /> : <PauseIcon />}
+        <Fab color="primary" aria-label="edit" onClick={pausePlay}>
+          {isPaused ? <PlayArrowIcon fontSize="small"/> : <PauseIcon fontSize="small"/>}
         </Fab>
       </div>
     </div>

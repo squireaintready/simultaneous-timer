@@ -6,7 +6,7 @@ const Timer = ({
   hoursMinSecs,
   title,
   id,
-  removeTimerWhenFinished,
+  removeTimerFromArr,
   resetTimer,
   handleResetTimer,
   isPaused,
@@ -16,7 +16,7 @@ const Timer = ({
 
   // CALLS FUNCTION TO REMOVE TIMER FROM ARR
   const handleRemovingTimer = () => {
-    removeTimerWhenFinished(id);
+    removeTimerFromArr(id);
   };
 
   // RESET FUNCTION
