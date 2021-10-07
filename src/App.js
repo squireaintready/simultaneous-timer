@@ -11,7 +11,7 @@ function App() {
   // ADDS NEW TIMER TO ARR
   const addNewTimer = (obj) =>{
     setTimers(prev =>{
-      return [obj, ...prev]
+      return [...prev, obj]
     })
   }
 
