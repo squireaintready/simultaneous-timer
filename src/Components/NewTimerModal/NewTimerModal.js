@@ -100,8 +100,8 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
               <TextField type="number" name="seconds" label="seconds" value={seconds.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>
             </div>
             <Button type='submit' variant='contained' color='primary'>START</Button>
+            <Button onClick={resetAllValues}>Clear</Button>
           </form>
-          <Button onClick={resetAllValues}>Clear</Button>
         </div>
       </Modal>
     </div>
