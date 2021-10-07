@@ -28,10 +28,7 @@
   text-align: center;
 }
 
-.MuiButtonBase-root .MuiButton-root .MuiButton-label{
-  margin-bottom:20rem;
-}
-
 #createsNewTimer .MuiButton-label{
   color:yellowgreen !important;
+  margin-bottom: 20rem;
 }
