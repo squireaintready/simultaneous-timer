@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import "./styles.css";
 
-import uuid from "uuid";
+import { uuid as v4} from 'uuidv4';
 
 // MUI COMPONENTS
 import AddIcon from '@material-ui/icons/Add';
@@ -57,7 +57,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     }else if(hours <= 0 && minutes <= 0 && seconds <= 0){
       alert('Please enter a valid time')
     }else{
-      addNewTimer({id: uuid(), title: newTitle, timer:{hours:parseInt(hours), minutes:parseInt(minutes), seconds:parseInt(seconds)}})
+      addNewTimer({id: v4(), title: newTitle, timer:{hours:parseInt(hours, 10), minutes:parseInt(minutes, 10), seconds:parseInt(seconds, 10)}})
       handleClose()
       resetAllValues()
     }
@@ -94,7 +94,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
         <div className='modalContainer'>
           <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
             <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
-            <div className='modalTimeFields'>
+            <div className='modalTimeInputs'>
               <TextField type="number" name="hours" label="hours" value={hours.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:
               <TextField type="number" name="minutes" label="minutes" value={minutes.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:
               <TextField type="number" name="seconds" label="seconds" value={seconds.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>

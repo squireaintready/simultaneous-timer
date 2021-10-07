@@ -13,14 +13,10 @@
   justify-content: space-evenly;
 } 
 
-.modalTimeFields{
+.modalTimeInputs{
   display:flex;
   align-items: center;
   width: fit-content;
-}
-
-.cardTimeFields > .MuiFormControl-root{
-  width:4rem;
 }
 
 .MuiInputBase-input{
