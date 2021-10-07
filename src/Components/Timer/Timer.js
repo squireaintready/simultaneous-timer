@@ -21,7 +21,7 @@ const Timer = ({
 
   // RESET FUNCTION
   const reset = () => {
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
+    setTime([parseInt(hours, 10), parseInt(minutes, 10), parseInt(seconds, 10)]);
   };
 
   // TICKS by 1 second, every second
