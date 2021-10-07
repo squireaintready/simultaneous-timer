@@ -68,9 +68,11 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     if(timers.length < 1){
       temp.style.height = '100vh'
       temp.style.backgroundColor ='#181A18'
+      temp.style.paddingBottom = '20rem'
       setBtnTextSize(window.innerHeight / 20)
     }else{
       temp.style.height = '8vh'
+      temp.style.paddingBottom = '0'
       temp.style.background ='linear-gradient(to bottom, #0f2027, #203a43, #2c5364)'
       temp.style.padding = '2rem'
       setBtnTextSize(window.innerHeight / 40)
