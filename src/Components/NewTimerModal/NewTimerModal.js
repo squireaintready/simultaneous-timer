@@ -4,6 +4,7 @@ import "./styles.css";
 import uuid from "uuid";
 
 // MUI COMPONENTS
+import AddIcon from '@material-ui/icons/Add';
 import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import TextField from '@material-ui/core/TextField'
@@ -66,21 +67,23 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     let temp = document.getElementById('createsNewTimer')
     if(timers.length < 1){
       temp.style.height = '100vh'
-      temp.style.backgroundColor ='black'
+      temp.style.backgroundColor ='#181A18'
       setBtnTextSize(window.innerHeight / 20)
     }else{
-      temp.style.height = '4vh'
-      // temp.style.background ='linear-gradient(90deg,#00b09b,#96c93d)'
-      temp.style.backgroundColor ='#00d395'
+      temp.style.height = '8vh'
+      temp.style.background ='linear-gradient(to bottom, #0f2027, #203a43, #2c5364)'
       temp.style.padding = '2rem'
-      setBtnTextSize(window.innerHeight / 30)
+      setBtnTextSize(window.innerHeight / 40)
     }
   }, [timers.length])
 
 
   return (
     <div>
-      <Button style={{fontSize:btnTextSize}} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>Start new timer</Button>
+      <Button style={{fontSize:btnTextSize}} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>
+        <AddIcon/>
+        <p>Add More timers</p>
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
