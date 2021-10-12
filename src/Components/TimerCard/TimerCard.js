@@ -28,7 +28,6 @@ const TimerCard = ({ timer, title, id, removeTimerFromArr }) => {
     <div className="cardContainer" id={title}>
       <Timer
         hoursMinSecs={timer}
-        title={title}
         id={id}
         removeTimerFromArr={removeTimerFromArr}
         resetTimer={resetTimer}

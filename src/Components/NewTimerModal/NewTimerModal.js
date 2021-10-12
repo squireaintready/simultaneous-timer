@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import "./styles.css";
 
-import { uuid as v4} from 'uuidv4';
+// import { uuid as v4} from 'uuidv4';
+import { v4 as uuidv4 } from "uuid"
 
 // MUI COMPONENTS
 import AddIcon from '@material-ui/icons/Add';
@@ -15,7 +16,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
   const [hours, setHours] = useState(0)
   const [minutes, setMinutes] = useState(0)
   const [seconds, setSeconds] = useState(0)
-  const [btnTextSize, setBtnTextSize] = useState('')
+  const [btnStyles, setBtnStyles] = useState({})
   
   // OPENS & CLOSES MODAL
   const handleOpen = () => setOpen(true);
@@ -36,7 +37,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
 
   // UPDATES WITH USER TIMER PARAMS
   const handleNewTimerChange = (e) => {
-    // limits string length to 2
+    // LIMITS USER INPUT TO 2 NUMBERS
     if(e.target.value.length > 2){
       e.target.value = e.target.value.substring(1)
     }
@@ -57,40 +58,40 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     }else if(hours <= 0 && minutes <= 0 && seconds <= 0){
       alert('Please enter a valid time')
     }else{
-      addNewTimer({id: v4(), title: newTitle, timer:{hours:parseInt(hours, 10), minutes:parseInt(minutes, 10), seconds:parseInt(seconds, 10)}})
+      addNewTimer({id: uuidv4(), title: newTitle, timer:{hours:parseInt(hours, 10), minutes:parseInt(minutes, 10), seconds:parseInt(seconds, 10)}})
       handleClose()
       resetAllValues()
     }
   }
 
   useEffect(() =>{
-    let temp = document.getElementById('createsNewTimer')
+    // IF ARRAY IS EMPTY, BTN FULL SCREEN
     if(timers.length < 1){
-      temp.style.height = '100vh'
-      temp.style.backgroundColor ='#181A18'
-      temp.style.paddingBottom = '20rem'
-      setBtnTextSize(window.innerHeight / 20)
+      setBtnStyles({
+        backgroundColor: '#181A18',
+        height: '100vh',
+        paddingBottom: '15rem',
+        fontSize: 'xx-large'
+      })
     }else{
-      temp.style.height = '8vh'
-      temp.style.paddingBottom = '0'
-      temp.style.background ='linear-gradient(to bottom, #0f2027, #203a43, #2c5364)'
-      temp.style.padding = '2rem'
-      setBtnTextSize(window.innerHeight / 40)
+      // IF ARRAY CONTAINS VALUES, BTN FIXED TO TOP
+      setBtnStyles({
+        background: 'linear-gradient(to bottom, #0f2027, #203a43, #2c5364)',
+        height: '8vh',
+        paddingBottom: '0',
+        fontSize: 'medium'
+      })
     }
   }, [timers.length])
 
 
   return (
     <div>
-      <Button style={{fontSize:btnTextSize}} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>
+      <Button style={btnStyles} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>
         <AddIcon/>
         <p>Add More timers</p>
       </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        style={{display:'flex', justifyContent:'center', marginTop:'8rem'}}
-      >
+      <Modal open={open} onClose={handleClose} className='modal'>
         <div className='modalContainer'>
           <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
             <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
@@ -109,3 +110,4 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
 };
 
 export default NewTimerModal
+

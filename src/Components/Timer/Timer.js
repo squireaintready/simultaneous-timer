@@ -4,13 +4,13 @@ import "./styles.css";
 
 const Timer = ({
   hoursMinSecs,
-  title,
   id,
   removeTimerFromArr,
   resetTimer,
   handleResetTimer,
   isPaused,
 }) => {
+
   const { hours, minutes, seconds } = hoursMinSecs;
   const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
 
@@ -21,10 +21,14 @@ const Timer = ({
 
   // RESET FUNCTION
   const reset = () => {
-    setTime([parseInt(hours, 10), parseInt(minutes, 10), parseInt(seconds, 10)]);
+    setTime([
+      parseInt(hours, 10),
+      parseInt(minutes, 10),
+      parseInt(seconds, 10),
+    ]);
   };
 
-  // TICKS by 1 second, every second
+  // INCREMENT 1s TICK
   const tick = () => {
     if (hrs === 0 && mins === 0 && secs === 0) {
       handleRemovingTimer();

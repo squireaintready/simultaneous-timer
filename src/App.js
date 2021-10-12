@@ -9,11 +9,11 @@ function App() {
   const [timers, setTimers] = useState([]);
 
   // ADDS NEW TIMER TO ARR
-  const addNewTimer = (obj) =>{
-    setTimers(prev =>{
-      return [...prev, obj]
-    })
-  }
+  const addNewTimer = (newTimerObj) => {
+    setTimers((prev) => {
+      return [...prev, newTimerObj];
+    });
+  };
 
   // REMOVES TIMER FROM ARR
   const removeTimerFromArr = (id) => {
@@ -22,22 +22,24 @@ function App() {
 
   return (
     <div className="app">
-      <NewTimerModal addNewTimer={addNewTimer} timers={timers}/>
-      <div className="container">
-        <div className="timers">
-          {timers.map((time) => (
-            <TimerCard
-              key={time.id}
-              id={time.id}
-              timer={time.timer}
-              title={time.title}
-              removeTimerFromArr={removeTimerFromArr}
-            />
-          ))}
+      <NewTimerModal addNewTimer={addNewTimer} timers={timers} />
+      {timers.length >= 1 ? (
+        <div className="container">
+          <div className="timers">
+            {timers.map((time) => (
+              <TimerCard
+                key={time.id}
+                id={time.id}
+                timer={time.timer}
+                title={time.title}
+                removeTimerFromArr={removeTimerFromArr}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
-};
+}
 
 export default App;
