@@ -4,24 +4,26 @@
 
 - How long you spent on the assignment.
   Spent 1.5 hrs building the timer logic, and managing data flow. 
-  Spent 2 hrs laying out the skeleton & designing UI/UX; Includes language, color schemes, and spacings for a rich experience & responsive design.
+  Spent 2 hrs laying out the skeleton & designing UI/UX, which includes language, color schemes, and spacings for a rich experience & responsive design.
   Total time = ~ 3.5 hrs.
 
 - What you like about your implementation.
-  I like that despite the many moving components, there are only two main parts. A button, and a collection of components.
-  On initial load, the way the app begins with rendering a full screen button feels oddly satisfying to me.
-  The first part is a button which updates the state array by pushing a new obj to the array.
-  Second part is a collection of 'TimerCards'.
-  By rendering a collection, I like how the app utilizes the virtual dom to render/update reusable components dynamically.
+  I like that despite the many moving components, the app is composed of two main parts. 
+  A button, and a collection of components.
+  The first part is a button which updates the state array by pushing a new obj to the front of the array.
+  On initial load & ifArrayIsEmpty, the app starts by rendering a full screen button which personally felt oddly satisfying.
+  The second part of the app is a collection of 'TimerCards'.
+  By rendering a collection, I like how the app utilizes the virtual dom to dynamically render/update individual reusable components.
 
 - What you would change if you were going to do it again.
-  I would consider implementing redux to manage data.
-  Depending on the average number of timers, I would redesign the squared card design into smaller rectangular boxes reminiscent of cassette tapes.
+  I would consider implementing redux for storing/updating data.
+  Considering the average number of active timers, I would redesign the squared card design into smaller rectangular boxes reminiscent of cassette tapes.
 
 - How you made your design decisions. For example, if you looked at other timer apps/webapps for inspiration, please note that.
-  At first, I drew 3 different wireframes to envision various button/text placements.
-  After, I looked at other apps(app store) for color schemes & potential features.
-  I redrew 3 wireframes with basic features, and took a poll within my household(4 members). I implemented the design with the most votes. 
+  First I made two lists. One for expected logic/features, another for potential features.
+  Next, I looked at other apps on the app store for inspriration(color schemes & additional features) and envision UI/UX(specifically button/text placements).
+  Lastly, I drew 3 different wireframes with the expected features and took a poll within my household(4 members).
+  Implemented the design with the most votes.
 
 - How you would test this if you had more time.
   Test if array initializes empty on initial load, 
@@ -36,7 +38,14 @@
   - Allows users to clear inputs before submitting ✅
 
 
----
+-Additional notes
+  DataStruct = 
+  [
+  { id:uuid(), title:title, timer:{ hours:hours, seconds:seconds, minutes:minutes } },
+  {...}
+  ]
+
+-----------
 
 ### Context
 
