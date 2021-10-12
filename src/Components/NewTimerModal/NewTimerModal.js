@@ -77,7 +77,7 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
       // IF ARRAY CONTAINS VALUES, BTN FIXED TO TOP
       setBtnStyles({
         background: 'linear-gradient(to bottom, #0f2027, #203a43, #2c5364)',
-        height: '8vh',
+        height: '4.5rem',
         paddingBottom: '0',
         fontSize: 'medium'
       })
