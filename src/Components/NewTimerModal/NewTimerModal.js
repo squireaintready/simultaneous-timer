@@ -30,12 +30,12 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     setSeconds(0)
   }
 
-  // UPDATES WITH USER TITLE PARAM
+  // UPDATES TITLE INPUT onChange
   const handleNewTitleChange = (e) =>{
     setNewTitle(e.target.value)
   }
 
-  // UPDATES WITH USER TIMER PARAMS
+  // UPDATES TIMER INPUT onChange
   const handleNewTimerChange = (e) => {
     // LIMITS USER INPUT TO 2 NUMBERS
     if(e.target.value.length > 2){
@@ -89,11 +89,11 @@ const NewTimerModal = ({ addNewTimer, timers }) => {
     <div>
       <Button style={btnStyles} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>
         <AddIcon/>
-        <p>Add More timers</p>
+        <p>Add new timers</p>
       </Button>
       <Modal open={open} onClose={handleClose} className='modal'>
         <div className='modalContainer'>
-          <form onSubmit={handleSubmit} style={{display:'flex', flexDirection:'column'}}>
+          <form onSubmit={handleSubmit} className='modalForm'>
             <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
             <div className='modalTimeInputs'>
               <TextField type="number" name="hours" label="hours" value={hours.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:

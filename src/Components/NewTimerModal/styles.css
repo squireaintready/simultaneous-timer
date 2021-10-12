@@ -19,6 +19,11 @@
   justify-content: space-evenly;
 } 
 
+.modalForm{
+  display:flex;
+  flex-direction: column;
+}
+
 .modalTimeInputs{
   display:flex;
   align-items: center;
