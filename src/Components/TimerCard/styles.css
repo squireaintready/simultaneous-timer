@@ -40,6 +40,6 @@
 
 .cardBtns{
   display:flex;
-  width:8rem !important;
+  width:12rem !important;
   justify-content: space-between;
 }
