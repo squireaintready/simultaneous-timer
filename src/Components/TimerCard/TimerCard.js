@@ -6,6 +6,7 @@ import Timer from "../Timer/Timer";
 
 // MUI COMPONENTS
 import Fab from "@material-ui/core/Fab";
+import CloseIcon from '@material-ui/icons/Close';
 import LoopIcon from "@material-ui/icons/Loop";
 import PauseIcon from "@material-ui/icons/Pause";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
@@ -37,6 +38,9 @@ const TimerCard = ({ timer, title, id, removeTimerFromArr }) => {
       <hr className="cardDivider" />
       <h5 className="cardTitle">{title}</h5>
       <div className="cardBtns">
+        <Fab color="secondary" aria-label="add" onClick={() => removeTimerFromArr(id)}>
+          <CloseIcon fontSize="small"/>
+        </Fab>
         <Fab color="default" aria-label="add" onClick={handleResetTimer}>
           <LoopIcon fontSize="small"/>
         </Fab>
