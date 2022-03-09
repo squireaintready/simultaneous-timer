@@ -1,3 +1,5 @@
+https://squireaintready.github.io/simultaneous-timer/
+
 # Simultaneous Timers
 
 
