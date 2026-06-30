@@ -1,69 +1,33 @@
-https://squireaintready.github.io/simultaneous-timer/
-
 # Simultaneous Timers
 
+Run any number of countdown timers at once — built for cooking, where one timer is never enough.
 
------------
+**Live → [squireaintready.github.io/simultaneous-timer](https://squireaintready.github.io/simultaneous-timer/)**
 
-### Context
+## Why
 
-When following a new recipe, you're often trying to keep track of timers at once.
-For example, your dough might need to bake in the oven for 15 minutes while your
-stew needs to simmer for 40 minutes. As you're working through the recipe, you
-often realize that one timer is not enough for a given moment, so let's fix that!
+When you're following a recipe, you're juggling several timers at once: dough baking for 15 minutes while a stew simmers for 40. One kitchen timer doesn't cut it. This is a tiny web app that lets you spin up as many simultaneous timers as you need — each one disappears automatically when it finishes.
 
-## High Level Problem Statement
+## Features
 
-Create a simple webapp that allows the chef in you to easily keep track of multiple
-timers. The user should be able to have any number of simultaneously running timers.
-Aside from being able to create timers, and timers should disappear once they are done.
+- **Unlimited concurrent timers**, each with its own name
+- **Accurate countdown** — anchored to wall-clock time, so it stays correct even if the tab is backgrounded and `setInterval` is throttled
+- **Pause / resume / reset** per timer
+- **Auto-removes** a timer the moment it hits zero
+- **Mobile-first** responsive grid, touch-friendly controls, accessible labels
 
+## Stack
 
+React 18 · Create React App · plain CSS — **no UI library**, no icon dependency (inline SVGs), ~48 kB gzipped.
 
+## Run locally
 
-# Getting Started with Create React App
+```bash
+npm install
+npm start        # http://localhost:3000
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm run build    # production build
+npm run deploy   # publish to GitHub Pages
+```

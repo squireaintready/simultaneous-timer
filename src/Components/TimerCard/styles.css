@@ -1,45 +1,79 @@
-.cardContainer{
-  width: 275px;
-  height: 275px;
-  padding: 1rem 1rem;
-  margin: 1rem;
-  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-  color:#f9fafb;
-  border-radius: 10px;
-  border: 1px solid #363f45;
-  box-shadow: 0px 15px 24px 9px rgba(59,84,99,0.4);
-  display:flex;
+.card {
+  background: var(--grad, linear-gradient(160deg, #0f2027, #203a43, #2c5364));
+  color: var(--text, #f9fafb);
+  border: 1px solid var(--line, #363f45);
+  border-radius: 14px;
+  box-shadow: 0 15px 24px 9px rgba(59, 84, 99, 0.25);
+  padding: 1.5rem 1rem;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  gap: 1rem;
   text-align: center;
-} 
-
-.cardDivider{
-  width:12rem;
-  border-color: #36454F;
 }
 
-.cardTitle{
-  font-size: 32px;
-  font-weight:500;
+.card__time {
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card__divider {
+  width: 80%;
+  border: none;
+  border-top: 1px solid #36454f;
+}
+
+.card__title {
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 0.03em;
+  word-break: break-word;
 }
 
-.MuiInputBase-input{
-  color:whitesmoke !important;
+.card__btns {
+  display: flex;
+  gap: 1rem;
 }
 
-.MuiFormLabel-root{
-  color:whitesmoke !important;
+.iconbtn {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text, #f9fafb);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
-.MuiFormControl-root{
-  margin-bottom: .5rem !important;
+.iconbtn:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
-.cardBtns{
-  display:flex;
-  width:12rem !important;
-  justify-content: space-between;
+.iconbtn:active {
+  transform: scale(0.94);
+}
+
+.iconbtn--primary {
+  background: #2c5364;
+  border-color: #3a6b80;
+}
+
+.iconbtn--primary:hover {
+  background: #356680;
+}
+
+.iconbtn--danger:hover {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.iconbtn:focus-visible {
+  outline: 2px solid var(--focus, #9acbe0);
+  outline-offset: 2px;
 }

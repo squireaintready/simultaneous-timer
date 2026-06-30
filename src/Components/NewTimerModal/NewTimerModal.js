@@ -1,113 +1,142 @@
-import React, {useState, useEffect} from 'react'
+import { useEffect, useRef, useState } from "react";
 import "./styles.css";
+import { IconPlus } from "../icons";
 
-// import { uuid as v4} from 'uuidv4';
-import { v4 as uuidv4 } from "uuid"
-
-// MUI COMPONENTS
-import AddIcon from '@material-ui/icons/Add';
-import Button from "@material-ui/core/Button";
-import Modal from "@material-ui/core/Modal";
-import TextField from '@material-ui/core/TextField'
-
-const NewTimerModal = ({ addNewTimer, timers }) => {
-  const [open, setOpen] = useState(false);
-  const [newTitle, setNewTitle] = useState('')
-  const [hours, setHours] = useState(0)
-  const [minutes, setMinutes] = useState(0)
-  const [seconds, setSeconds] = useState(0)
-  const [btnStyles, setBtnStyles] = useState({})
-  
-  // OPENS & CLOSES MODAL
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  // REINITIALIZE ALL VALUES TO 0
-  const resetAllValues = () =>{
-    setNewTitle('')
-    setHours(0)
-    setMinutes(0)
-    setSeconds(0)
-  }
-
-  // UPDATES TITLE INPUT onChange
-  const handleNewTitleChange = (e) =>{
-    setNewTitle(e.target.value)
-  }
-
-  // UPDATES TIMER INPUT onChange
-  const handleNewTimerChange = (e) => {
-    // LIMITS USER INPUT TO 2 NUMBERS
-    if(e.target.value.length > 2){
-      e.target.value = e.target.value.substring(1)
-    }
-    if(e.target.name === 'hours'){
-      setHours(e.target.value)
-    }else if (e.target.name === 'minutes' && e.target.value <= 60){
-      setMinutes(e.target.value)
-    }else if (e.target.name === 'seconds' && e.target.value <= 60){
-      setSeconds(e.target.value)
-    }
-  }
-
-  // PUSHES USER FORM DATA UP TO APP
-  const handleSubmit = (e) =>{
-    e.preventDefault()
-    if(newTitle.length === 0){
-      alert('Please enter a title')
-    }else if(hours <= 0 && minutes <= 0 && seconds <= 0){
-      alert('Please enter a valid time')
-    }else{
-      addNewTimer({id: uuidv4(), title: newTitle, timer:{hours:parseInt(hours, 10), minutes:parseInt(minutes, 10), seconds:parseInt(seconds, 10)}})
-      handleClose()
-      resetAllValues()
-    }
-  }
-
-  useEffect(() =>{
-    // IF ARRAY IS EMPTY, BTN FULL SCREEN
-    if(timers.length < 1){
-      setBtnStyles({
-        backgroundColor: '#181A18',
-        height: '100vh',
-        paddingBottom: '15rem',
-        fontSize: 'xx-large'
-      })
-    }else{
-      // IF ARRAY CONTAINS VALUES, BTN FIXED TO TOP
-      setBtnStyles({
-        background: 'linear-gradient(to bottom, #0f2027, #203a43, #2c5364)',
-        height: '4.5rem',
-        paddingBottom: '0',
-        fontSize: 'medium'
-      })
-    }
-  }, [timers.length])
-
-
-  return (
-    <div>
-      <Button style={btnStyles} id='createsNewTimer' color='primary' fullWidth={true} variant='contained' onClick={handleOpen}>
-        <AddIcon/>
-        <p>Add new timers</p>
-      </Button>
-      <Modal open={open} onClose={handleClose} className='modal'>
-        <div className='modalContainer'>
-          <form onSubmit={handleSubmit} className='modalForm'>
-            <TextField variant="outlined" label="New Title" value={newTitle} onChange={handleNewTitleChange}/>
-            <div className='modalTimeInputs'>
-              <TextField type="number" name="hours" label="hours" value={hours.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:
-              <TextField type="number" name="minutes" label="minutes" value={minutes.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>:
-              <TextField type="number" name="seconds" label="seconds" value={seconds.toString().padStart(2, "0")} onChange={handleNewTimerChange}/>
-            </div>
-            <Button type='submit' variant='contained' color='primary'>START</Button>
-            <Button onClick={resetAllValues}>Clear</Button>
-          </form>
-        </div>
-      </Modal>
-    </div>
-  );
+const clamp = (value, max) => {
+  const n = parseInt(value, 10);
+  if (Number.isNaN(n)) return 0;
+  return Math.min(Math.max(n, 0), max);
 };
 
-export default NewTimerModal
+export default function NewTimerModal({ onAdd, compact }) {
+  const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [error, setError] = useState("");
+  const titleRef = useRef(null);
 
+  const close = () => {
+    setOpen(false);
+    setError("");
+  };
+
+  const reset = () => {
+    setTitle("");
+    setHours(0);
+    setMinutes(0);
+    setSeconds(0);
+    setError("");
+  };
+
+  // Focus the title on open; close on Escape.
+  useEffect(() => {
+    if (!open) return undefined;
+    titleRef.current?.focus();
+    const onKey = (e) => {
+      if (e.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const submit = (e) => {
+    e.preventDefault();
+    const total = hours * 3600 + minutes * 60 + seconds;
+    if (!title.trim()) {
+      setError("Please enter a title.");
+      return;
+    }
+    if (total <= 0) {
+      setError("Please enter a time greater than zero.");
+      return;
+    }
+    onAdd({ id: crypto.randomUUID(), title: title.trim(), duration: total });
+    reset();
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <button
+        type="button"
+        className={`add-btn${compact ? " add-btn--compact" : ""}`}
+        onClick={() => setOpen(true)}
+      >
+        <IconPlus />
+        <span>Add timer</span>
+      </button>
+
+      {open && (
+        <div className="overlay" onMouseDown={close}>
+          <div
+            className="dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="New timer"
+            onMouseDown={(e) => e.stopPropagation()}
+          >
+            <form className="dialog__form" onSubmit={submit}>
+              <input
+                ref={titleRef}
+                className="field"
+                type="text"
+                placeholder="Timer name (e.g. Pasta)"
+                value={title}
+                maxLength={40}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <div className="time-inputs">
+                <label className="time-inputs__group">
+                  <span>hrs</span>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="99"
+                    value={hours}
+                    onChange={(e) => setHours(clamp(e.target.value, 99))}
+                  />
+                </label>
+                <span className="time-inputs__colon">:</span>
+                <label className="time-inputs__group">
+                  <span>min</span>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="59"
+                    value={minutes}
+                    onChange={(e) => setMinutes(clamp(e.target.value, 59))}
+                  />
+                </label>
+                <span className="time-inputs__colon">:</span>
+                <label className="time-inputs__group">
+                  <span>sec</span>
+                  <input
+                    type="number"
+                    inputMode="numeric"
+                    min="0"
+                    max="59"
+                    value={seconds}
+                    onChange={(e) => setSeconds(clamp(e.target.value, 59))}
+                  />
+                </label>
+              </div>
+              {error && <p className="dialog__error">{error}</p>}
+              <div className="dialog__actions">
+                <button type="button" className="btn btn--ghost" onClick={close}>
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn--primary">
+                  Start
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

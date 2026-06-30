@@ -1,45 +1,34 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
-// CUSTOM COMPONENTS
 import NewTimerModal from "./Components/NewTimerModal/NewTimerModal";
 import TimerCard from "./Components/TimerCard/TimerCard";
 
-function App() {
+export default function App() {
   const [timers, setTimers] = useState([]);
 
-  // ADDS NEW TIMER TO ARR
-  const addNewTimer = (newTimerObj) => {
-    setTimers((prev) => {
-      return [newTimerObj, ...prev];
-    });
-  };
+  const addTimer = (timer) => setTimers((prev) => [timer, ...prev]);
+  const removeTimer = (id) =>
+    setTimers((prev) => prev.filter((t) => t.id !== id));
 
-  // REMOVES TIMER FROM ARR
-  const removeTimerFromArr = (id) => {
-    setTimers(timers.filter((timer) => timer.id !== id));
-  };
+  const hasTimers = timers.length > 0;
 
   return (
     <div className="app">
-      <NewTimerModal addNewTimer={addNewTimer} timers={timers} />
-      {timers.length >= 1 ? (
-        <div className="container">
-          <div className="timers">
-            {timers.map((time) => (
-              <TimerCard
-                key={time.id}
-                id={time.id}
-                timer={time.timer}
-                title={time.title}
-                removeTimerFromArr={removeTimerFromArr}
-              />
-            ))}
-          </div>
-        </div>
-      ) : null}
+      <NewTimerModal onAdd={addTimer} compact={hasTimers} />
+      {hasTimers && (
+        <main className="timers">
+          {timers.map((t) => (
+            <TimerCard
+              key={t.id}
+              id={t.id}
+              title={t.title}
+              duration={t.duration}
+              onDone={removeTimer}
+            />
+          ))}
+        </main>
+      )}
     </div>
   );
 }
-
-export default App;
