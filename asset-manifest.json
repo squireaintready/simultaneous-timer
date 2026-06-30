@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/simultaneous-timer/static/css/main.20423c4d.chunk.css",
-    "main.js": "/simultaneous-timer/static/js/main.11211dd0.chunk.js",
-    "main.js.map": "/simultaneous-timer/static/js/main.11211dd0.chunk.js.map",
-    "runtime-main.js": "/simultaneous-timer/static/js/runtime-main.efeca28c.js",
-    "runtime-main.js.map": "/simultaneous-timer/static/js/runtime-main.efeca28c.js.map",
-    "static/js/2.69e4cbdf.chunk.js": "/simultaneous-timer/static/js/2.69e4cbdf.chunk.js",
-    "static/js/2.69e4cbdf.chunk.js.map": "/simultaneous-timer/static/js/2.69e4cbdf.chunk.js.map",
-    "static/js/3.a41bbd59.chunk.js": "/simultaneous-timer/static/js/3.a41bbd59.chunk.js",
-    "static/js/3.a41bbd59.chunk.js.map": "/simultaneous-timer/static/js/3.a41bbd59.chunk.js.map",
+    "main.css": "/simultaneous-timer/static/css/main.f876925c.css",
+    "main.js": "/simultaneous-timer/static/js/main.fb047f42.js",
     "index.html": "/simultaneous-timer/index.html",
-    "static/css/main.20423c4d.chunk.css.map": "/simultaneous-timer/static/css/main.20423c4d.chunk.css.map",
-    "static/js/2.69e4cbdf.chunk.js.LICENSE.txt": "/simultaneous-timer/static/js/2.69e4cbdf.chunk.js.LICENSE.txt"
+    "main.f876925c.css.map": "/simultaneous-timer/static/css/main.f876925c.css.map",
+    "main.fb047f42.js.map": "/simultaneous-timer/static/js/main.fb047f42.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.efeca28c.js",
-    "static/js/2.69e4cbdf.chunk.js",
-    "static/css/main.20423c4d.chunk.css",
-    "static/js/main.11211dd0.chunk.js"
+    "static/css/main.f876925c.css",
+    "static/js/main.fb047f42.js"
   ]
 }
